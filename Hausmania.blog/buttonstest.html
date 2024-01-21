@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .prev,
+.next {
+  -moz-transition: -moz-transform, 100ms;
+  -o-transition: -o-transform, 100ms;
+  -webkit-transition: -webkit-transform, 100ms;
+  transition: transform, 100ms;
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  width: 7em;
+  height: 7em;
+  transform: translatez(0);
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: none;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 5%;
+}
+.prev:after,
+.next:after {
+  -moz-transition: -moz-transform, 100ms;
+  -o-transition: -o-transform, 100ms;
+  -webkit-transition: -webkit-transform, 100ms;
+  transition: transform, 100ms;
+  position: absolute;
+  box-sizing: border-box;
+  border-top: 2px solid rgba(255, 255, 255, 0.75);
+  border-left: 2px solid rgba(255, 255, 255, 0.75);
+  content: "";
+  width: 2em;
+  height: 2em;
+  top: 50%;
+  margin-top: -1em;
+}
+
+.prev {
+  left: 0;
+}
+.prev:after {
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  border-top: 2px solid rgba(255, 255, 255, 0.75);
+  border-left: 2px solid rgba(255, 255, 255, 0.75);
+  left: 56%;
+  margin-left: -1em;
+}
+
+.next {
+  right: 0;
+}
+.next:after {
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+  border-top: 2px solid rgba(255, 255, 255, 0.75);
+  border-left: 2px solid rgba(255, 255, 255, 0.75);
+  right: 56%;
+  margin-right: -1em;
+}
+
+.prev:hover,
+.next:hover {
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.prev:hover:after,
+.next:hover:after {
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.prev:hover:after {
+  -moz-transform: rotate(-45deg) scale(1.05);
+  -ms-transform: rotate(-45deg) scale(1.05);
+  -webkit-transform: rotate(-45deg) scale(1.05);
+  transform: rotate(-45deg) scale(1.05);
+}
+
+.next:hover:after {
+  -moz-transform: rotate(135deg) scale(1.05);
+  -ms-transform: rotate(135deg) scale(1.05);
+  -webkit-transform: rotate(135deg) scale(1.05);
+  transform: rotate(135deg) scale(1.05);
+}
+
+.prev:active,
+.next:active {
+  -moz-transition: -moz-transform, 50ms;
+  -o-transition: -o-transform, 50ms;
+  -webkit-transition: -webkit-transform, 50ms;
+  transition: transform, 50ms;
+  -moz-transform: scale(1.025);
+  -ms-transform: scale(1.025);
+  -webkit-transform: scale(1.025);
+  transform: scale(1.025);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.prev:active:after,
+.next:active:after {
+  border-top: 2px solid rgba(0, 0, 0, 0.65);
+  border-left: 2px solid rgba(0, 0, 0, 0.65);
+}
+
+.prev:active:after {
+  -moz-transform: rotate(-45deg) scale(1.025);
+  -ms-transform: rotate(-45deg) scale(1.025);
+  -webkit-transform: rotate(-45deg) scale(1.025);
+  transform: rotate(-45deg) scale(1.025);
+}
+
+.next:active:after {
+  -moz-transform: rotate(135deg) scale(1.025);
+  -ms-transform: rotate(135deg) scale(1.025);
+  -webkit-transform: rotate(135deg) scale(1.025);
+  transform: rotate(135deg) scale(1.025);
+}
+
+body {
+  background-color: salmon;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 640px;
+  padding: 4em;
+  overflow: visible;
+}
+
+.saying {
+  -moz-transition: opacity, 400ms;
+  -o-transition: opacity, 400ms;
+  -webkit-transition: opacity, 400ms;
+  transition: opacity, 400ms;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="saying">Hi There!</p>
+        <p class="saying hidden">See Ya Later.</p>
+        
+        <a href="#prev" class="prev">Prev</a>
+        <a href="#next" class="next">Next</a>
+      </div>
+      <script>$( document ).ready(function() {
+        var prev = $(".prev");
+        var next = $(".next");
+        var saying = $(".saying");
+        prev.on('click', function() {
+          saying.toggleClass('hidden');
+        });
+        next.on('click', function() {
+          saying.toggleClass('hidden');
+        }); 
+      });</script>
+</body>
+</html>
